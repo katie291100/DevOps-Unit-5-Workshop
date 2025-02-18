@@ -7,5 +7,14 @@ jobs:
     runs-on: ubuntu-latest      # Sets the build environment a machine with the latest Ubuntu installed
     steps:
     - uses: actions/checkout@v4 # Adds a step to checkout the repository code
-    - name: Hello world       # Name of step
-      run: echo 'Hello world' # Command to run
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Use Node.js 22.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22.x
+        cache: 'npm'
+    - run: npm --version
+    - run: dotnet --version
