@@ -26,5 +26,6 @@ jobs:
       working-directory: ./DotnetTemplate.Web
       run: 
         npm install
-        npm run test
+        npm t
+        npm run lint
     
