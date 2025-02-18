@@ -7,14 +7,24 @@ jobs:
     runs-on: ubuntu-latest      # Sets the build environment a machine with the latest Ubuntu installed
     steps:
     - uses: actions/checkout@v4 # Adds a step to checkout the repository code
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    # - name: Use Node.js 22.x
-    #   uses: actions/setup-node@v4
-    #   with:
-    #     node-version: 22.x
-    #     cache: 'npm'
-    - run: npm --version
-    - run: dotnet --version
+
+    - name: install dotnet dependencies
+      run: dotnet restore
+    
+    - name: Build
+      run: dotnet build --no-restore
+  
+    - name: Test
+      run: dotnet test --no-build
+
+    - name: Test TypeScript
+      working-directory: ./DotnetTemplate.Web
+      run: 
+        npm install
+        npm run test
+    
