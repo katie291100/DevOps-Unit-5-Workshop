@@ -24,7 +24,7 @@ jobs:
 
     - name: Test TypeScript
       working-directory: ./DotnetTemplate.Web
-      run: 
+      run: |
         npm install
         npm t
         npm run lint
